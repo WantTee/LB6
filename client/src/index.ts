@@ -933,274 +933,274 @@ function renderDreamDetailPage(dreamId: string = "1") {
         try {
             const res = await fetch(`http://localhost:3000/visualisations/${encodeURIComponent(dreamId)}`, {
                 credentials: "include",
-           });
-                       const data = await res.json();
-                       if (!res.ok) {
-                           showAlert(data?.error || "Не удалось загрузить визуализацию");
-                           return;
-                       }
-           
-                       const titleEl = document.getElementById("dreamDetailTitle");
-                       if (titleEl) titleEl.textContent = String(data?.title ?? "");
-           
-                       const authorEl = document.getElementById("dreamDetailAuthor");
-                       if (authorEl) authorEl.textContent = String(data?.author ?? "");
-           
-                       const dateEl = document.getElementById("dreamDetailDate");
-                       const iso = String(data?.date_of_creation ?? "");
-                       const d = new Date(iso);
-                       if (dateEl) {
-                           if (!Number.isNaN(d.getTime())) {
-                               const dd = String(d.getDate()).padStart(2, "0");
-                               const mm = String(d.getMonth() + 1).padStart(2, "0");
-                               const yy = String(d.getFullYear()).slice(-2);
-                               dateEl.textContent = `${dd}.${mm}.${yy}`;
-                           } else {
-                               dateEl.textContent = iso || "—";
-                           }
-                       }
-           
-                       const likesEl = document.getElementById("dreamDetailLikes");
-                       if (likesEl) likesEl.textContent = String(data?.likes ?? 0);
-           
-                       const sel = document.getElementById("dreamVisibilitySelect") as HTMLSelectElement | null;
-                       if (sel) sel.value = String(Boolean(data?.is_public));
-           
-                       const description = String(data?.description ?? "");
-                       document.getElementById("readFullDescriptionBtn")?.addEventListener("click", () => {
-                           openDreamFullDescriptionModal(description);
-                       });
-           
-                       const imgs = [data?.img1, data?.img2, data?.img3].map((x: any) => String(x ?? ""));
-                       const root = document.querySelector<HTMLElement>(`[data-gallery-root="detail-${dreamId}"]`);
-                       if (root) {
-                           root.querySelectorAll<HTMLImageElement>(".dream-gallery-slide-image").forEach((imgEl, idx) => {
-                               imgEl.src = imgs[idx] || "";
-                           });
-                       }
-                   } catch {
-                       showAlert("Ошибка соединения");
-                   }
-               })();
-           }
-           
-           // ----------------------- ДЕТАЛЬНЫЙ ПРОСМОТР (чужой сон) -----------------------
-           function renderDreamForeignDetailPage(dreamId: string = "1") {
-               if (!app) return;
-           
-               const storedMode = (localStorage.getItem("dream_list_mode") as DreamListMode | null) || "dreams";
-               const foreignSlides: DreamGallerySlide[] = [
-                   { label: "КАДР 1", imageSrc: "", extraClass: "dream-gallery-slide--foreign" },
-                   { label: "КАДР 2", imageSrc: "", extraClass: "dream-gallery-slide--foreign-alt-1" },
-                   { label: "КАДР 3", imageSrc: "", extraClass: "dream-gallery-slide--foreign-alt-2" },
-               ];
-           
-               app.innerHTML = `
-                   <div class="dream-page fade-in dream-page--no-scroll">
-                       ${renderDreamTopNav(storedMode)}
-           
-                       <main class="dream-main">
-                           <section class="dream-panel dream-panel-detail">
-                               <div class="dream-detail-titlebar" id="dreamForeignTitle">Загрузка...</div>
-           
-                               <div class="dream-detail-content">
-                                   <div class="dream-detail-left">
-                                       <div class="dream-thumbs">
-                                           ${renderDreamGalleryMarkup(`foreign-${dreamId}`, foreignSlides)}
-                                       </div>
-                                   </div>
-           
-                                   <div class="dream-detail-right">
-                                       <div class="dream-detail-row">
-                                           <div class="dream-detail-label">Описание:</div>
-                                           <button
-                                               type="button"
-                                               id="readFullDescriptionBtnForeign"
-                                               class="dream-btn dream-btn-orange dream-btn-small"
-                                           >
-                                               Прочитать
-                                           </button>
-                                       </div>
-           
-                                       <div class="dream-detail-row">
-                                           <div class="dream-detail-label">Дата:</div>
-                                           <div class="dream-detail-value" id="dreamForeignDate">—</div>
-                                       </div>
-           
-                                       <div class="dream-detail-row">
-                                           <div class="dream-detail-label">Лайки:</div>
-                                           <div class="dream-detail-value">
-                                               <button type="button" id="foreignLikeBtn" class="dream-like-btn" style="background:transparent;border:none;cursor:pointer;padding:0;color:inherit;">
-                                                   <span id="dreamForeignLikes">0</span> <span id="dreamForeignHeart" class="dream-heart">♡</span>
-                                               </button>
-                                           </div>
-                                       </div>
-           
-                                       <div class="dream-detail-row">
-                                           <div class="dream-detail-label">Автор:</div>
-                                           <div class="dream-detail-value" id="dreamForeignAuthor">—</div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </section>
-                       </main>
-                   </div>
-               `;
-           
-               mountBurgerMenu(storedMode);
-               setupDreamLogoHomeHandler();
-               setupDreamGallery(`foreign-${dreamId}`, foreignSlides);
-           
-               (async () => {
-                   try {
-                       const res = await fetch(`http://localhost:3000/visualisations/${encodeURIComponent(dreamId)}`, {
-                           credentials: "include",
-                       });
-                       const data = await res.json();
-                       if (!res.ok) {
-                           showAlert(data?.error || "Не удалось загрузить визуализацию");
-                           return;
-                       }
-           
-                       const titleEl = document.getElementById("dreamForeignTitle");
-                       if (titleEl) titleEl.textContent = String(data?.title ?? "");
-           
-                       const authorEl = document.getElementById("dreamForeignAuthor");
-                       if (authorEl) authorEl.textContent = String(data?.author ?? "");
-           
-                       const dateEl = document.getElementById("dreamForeignDate");
-                       const iso = String(data?.date_of_creation ?? "");
-                       const d = new Date(iso);
-                       if (dateEl) {
-                           if (!Number.isNaN(d.getTime())) {
-                               const dd = String(d.getDate()).padStart(2, "0");
-                               const mm = String(d.getMonth() + 1).padStart(2, "0");
-                               const yy = String(d.getFullYear()).slice(-2);
-                               dateEl.textContent = `${dd}.${mm}.${yy}`;
-                           } else {
-                               dateEl.textContent = iso || "—";
-                           }
-                       }
-           
-                       const likesEl = document.getElementById("dreamForeignLikes");
-                       if (likesEl) likesEl.textContent = String(data?.likes ?? 0);
-           
-                       const heartEl = document.getElementById("dreamForeignHeart");
-                       const liked = Boolean(data?.liked);
-                       if (heartEl) {
-                           heartEl.textContent = liked ? "♥" : "♡";
-                           heartEl.classList.toggle("dream-heart--red", liked);
-                       }
-           
-                       const description = String(data?.description ?? "");
-                       document.getElementById("readFullDescriptionBtnForeign")?.addEventListener("click", () => {
-                           openDreamFullDescriptionModal(description);
-                       });
-           
-                       const imgs = [data?.img1, data?.img2, data?.img3].map((x: any) => String(x ?? ""));
-                       const root = document.querySelector<HTMLElement>(`[data-gallery-root="foreign-${dreamId}"]`);
-                       if (root) {
-                           root.querySelectorAll<HTMLImageElement>(".dream-gallery-slide-image").forEach((imgEl, idx) => {
-                               imgEl.src = imgs[idx] || "";
-                           });
-                       }
-           
-                       document.getElementById("foreignLikeBtn")?.addEventListener("click", async () => {
-                           try {
-                               const likeRes = await fetch(`http://localhost:3000/visualisations/${encodeURIComponent(dreamId)}/like`, {
-                                   method: "POST",
-                                   credentials: "include",
-                               });
-                               const likeData = await likeRes.json();
-                               if (!likeRes.ok) {
-                                   showAlert(likeData?.error || "Ошибка лайка");
-                                   return;
-                               }
-                               if (likesEl) likesEl.textContent = String(likeData?.likes ?? 0);
-                               const nowLiked = Boolean(likeData?.liked);
-                               if (heartEl) {
-                                   heartEl.textContent = nowLiked ? "♥" : "♡";
-                                   heartEl.classList.toggle("dream-heart--red", nowLiked);
-                               }
-                           } catch {
-                               showAlert("Ошибка соединения");
-                           }
-                       });
-                   } catch {
-                       showAlert("Ошибка соединения");
-                   }
-               })();
-           }
-           
-           // ----------------------- СЛУЖЕБНЫЕ СТРАНИЦЫ -----------------------
-           function renderDisclaimerPage() {
-               if (!app) return;
-               app.innerHTML = `
-                   <div class="disclaimer-page fade-in">
-                       <div class="disclaimer-container">
-                           <h1>DISCLAIMER</h1>
-                           <p>
-                               This website is created for humorous purposes and does not involve the actual purchase of items.
-                               Please only rate the creation of the website, as it is designed to teach novice programmers.
-                           </p>
-                           <button class="disclaimer-btn">Continue →</button>
-                       </div>
-                   </div>
-               `;
-               document.querySelector(".disclaimer-btn")?.addEventListener("click", () => navigate("/home"));
-           }
-           
-           // ----------------------- РОУТЕР -----------------------
-           function router() {
-               console.log("ROUTER STARTED", window.location.pathname);
-               const path = window.location.pathname;
-           
-               if (path !== "/") {
-                   loader?.style.setProperty("display", "none");
-                   btn?.style.setProperty("display", "none");
-               }
-           
-               if (path === "/") {
-                   loader?.classList.remove("hidden");
-                   setTimeout(() => {
-                       loader!.style.opacity = "0";
-                       setTimeout(() => {
-                           loader!.style.display = "none";
-                           btn?.classList.remove("hidden");
-                       }, 500);
-                   }, 1500);
-           
-                   btn?.addEventListener("click", () => navigate("/login"));
-                   return;
-               }
-           
-               if (path === "/login") return renderLoginPage();
-               if (path === "/code") return renderCodePage();
-               if (path === "/home") return renderDreamCreatePage();
-               if (path === "/history") return renderDreamListPage("history");
-               if (path === "/favorites") return renderDreamListPage("favorites");
-               if (path === "/disclaimer") return renderDisclaimerPage();
-           
-               if (path.startsWith("/dream/") || path === "/dream") {
-                   const parts = path.split("/");
-                   const id = parts.length >= 3 && parts[2] ? parts[2] : "1";
-                   if (parts[2] === "foreign" && parts[3]) {
-                       return renderDreamForeignDetailPage(parts[3]);
-                   }
-                   return renderDreamDetailPage(id);
-               }
-               if (path.startsWith("/catalog")) return renderDreamListPage("dreams");
-           
-               if (app) app.innerHTML = "<h1>404 — Страница не найдена</h1>";
-           }
-           
-           // ----------------------- ЗАПУСК -----------------------
-           window.addEventListener("popstate", () => {
-               runRouteTransition(router);
-           });
-           if (document.readyState === "complete") {
-               router();
-           } else {
-               window.addEventListener("load", router);
-           }
-           
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                showAlert(data?.error || "Не удалось загрузить визуализацию");
+                return;
+            }
+
+            const titleEl = document.getElementById("dreamDetailTitle");
+            if (titleEl) titleEl.textContent = String(data?.title ?? "");
+
+            const authorEl = document.getElementById("dreamDetailAuthor");
+            if (authorEl) authorEl.textContent = String(data?.author ?? "");
+
+            const dateEl = document.getElementById("dreamDetailDate");
+            const iso = String(data?.date_of_creation ?? "");
+            const d = new Date(iso);
+            if (dateEl) {
+                if (!Number.isNaN(d.getTime())) {
+                    const dd = String(d.getDate()).padStart(2, "0");
+                    const mm = String(d.getMonth() + 1).padStart(2, "0");
+                    const yy = String(d.getFullYear()).slice(-2);
+                    dateEl.textContent = `${dd}.${mm}.${yy}`;
+                } else {
+                    dateEl.textContent = iso || "—";
+                }
+            }
+
+            const likesEl = document.getElementById("dreamDetailLikes");
+            if (likesEl) likesEl.textContent = String(data?.likes ?? 0);
+
+            const sel = document.getElementById("dreamVisibilitySelect") as HTMLSelectElement | null;
+            if (sel) sel.value = String(Boolean(data?.is_public));
+
+            const description = String(data?.description ?? "");
+            document.getElementById("readFullDescriptionBtn")?.addEventListener("click", () => {
+                openDreamFullDescriptionModal(description);
+            });
+
+            const imgs = [data?.img1, data?.img2, data?.img3].map((x: any) => String(x ?? ""));
+            const root = document.querySelector<HTMLElement>(`[data-gallery-root="detail-${dreamId}"]`);
+            if (root) {
+                root.querySelectorAll<HTMLImageElement>(".dream-gallery-slide-image").forEach((imgEl, idx) => {
+                    imgEl.src = imgs[idx] || "";
+                });
+            }
+        } catch {
+            showAlert("Ошибка соединения");
+        }
+    })();
+}
+
+// ----------------------- ДЕТАЛЬНЫЙ ПРОСМОТР (чужой сон) -----------------------
+function renderDreamForeignDetailPage(dreamId: string = "1") {
+    if (!app) return;
+
+    const storedMode = (localStorage.getItem("dream_list_mode") as DreamListMode | null) || "dreams";
+    const foreignSlides: DreamGallerySlide[] = [
+        { label: "КАДР 1", imageSrc: "", extraClass: "dream-gallery-slide--foreign" },
+        { label: "КАДР 2", imageSrc: "", extraClass: "dream-gallery-slide--foreign-alt-1" },
+        { label: "КАДР 3", imageSrc: "", extraClass: "dream-gallery-slide--foreign-alt-2" },
+    ];
+
+    app.innerHTML = `
+        <div class="dream-page fade-in dream-page--no-scroll">
+            ${renderDreamTopNav(storedMode)}
+
+            <main class="dream-main">
+                <section class="dream-panel dream-panel-detail">
+                    <div class="dream-detail-titlebar" id="dreamForeignTitle">Загрузка...</div>
+
+                    <div class="dream-detail-content">
+                        <div class="dream-detail-left">
+                            <div class="dream-thumbs">
+                                ${renderDreamGalleryMarkup(`foreign-${dreamId}`, foreignSlides)}
+                            </div>
+                        </div>
+
+                        <div class="dream-detail-right">
+                            <div class="dream-detail-row">
+                                <div class="dream-detail-label">Описание:</div>
+                                <button
+                                    type="button"
+                                    id="readFullDescriptionBtnForeign"
+                                    class="dream-btn dream-btn-orange dream-btn-small"
+                                >
+                                    Прочитать
+                                </button>
+                            </div>
+
+                            <div class="dream-detail-row">
+                                <div class="dream-detail-label">Дата:</div>
+                                <div class="dream-detail-value" id="dreamForeignDate">—</div>
+                            </div>
+
+                            <div class="dream-detail-row">
+                                <div class="dream-detail-label">Лайки:</div>
+                                <div class="dream-detail-value">
+                                    <button type="button" id="foreignLikeBtn" class="dream-like-btn" style="background:transparent;border:none;cursor:pointer;padding:0;color:inherit;">
+                                        <span id="dreamForeignLikes">0</span> <span id="dreamForeignHeart" class="dream-heart">♡</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="dream-detail-row">
+                                <div class="dream-detail-label">Автор:</div>
+                                <div class="dream-detail-value" id="dreamForeignAuthor">—</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    `;
+
+    mountBurgerMenu(storedMode);
+    setupDreamLogoHomeHandler();
+    setupDreamGallery(`foreign-${dreamId}`, foreignSlides);
+
+    (async () => {
+        try {
+            const res = await fetch(`http://localhost:3000/visualisations/${encodeURIComponent(dreamId)}`, {
+                credentials: "include",
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                showAlert(data?.error || "Не удалось загрузить визуализацию");
+                return;
+            }
+
+            const titleEl = document.getElementById("dreamForeignTitle");
+            if (titleEl) titleEl.textContent = String(data?.title ?? "");
+
+            const authorEl = document.getElementById("dreamForeignAuthor");
+            if (authorEl) authorEl.textContent = String(data?.author ?? "");
+
+            const dateEl = document.getElementById("dreamForeignDate");
+            const iso = String(data?.date_of_creation ?? "");
+            const d = new Date(iso);
+            if (dateEl) {
+                if (!Number.isNaN(d.getTime())) {
+                    const dd = String(d.getDate()).padStart(2, "0");
+                    const mm = String(d.getMonth() + 1).padStart(2, "0");
+                    const yy = String(d.getFullYear()).slice(-2);
+                    dateEl.textContent = `${dd}.${mm}.${yy}`;
+                } else {
+                    dateEl.textContent = iso || "—";
+                }
+            }
+
+            const likesEl = document.getElementById("dreamForeignLikes");
+            if (likesEl) likesEl.textContent = String(data?.likes ?? 0);
+
+            const heartEl = document.getElementById("dreamForeignHeart");
+            const liked = Boolean(data?.liked);
+            if (heartEl) {
+                heartEl.textContent = liked ? "♥" : "♡";
+                heartEl.classList.toggle("dream-heart--red", liked);
+            }
+
+            const description = String(data?.description ?? "");
+            document.getElementById("readFullDescriptionBtnForeign")?.addEventListener("click", () => {
+                openDreamFullDescriptionModal(description);
+            });
+
+            const imgs = [data?.img1, data?.img2, data?.img3].map((x: any) => String(x ?? ""));
+            const root = document.querySelector<HTMLElement>(`[data-gallery-root="foreign-${dreamId}"]`);
+            if (root) {
+                root.querySelectorAll<HTMLImageElement>(".dream-gallery-slide-image").forEach((imgEl, idx) => {
+                    imgEl.src = imgs[idx] || "";
+                });
+            }
+
+            document.getElementById("foreignLikeBtn")?.addEventListener("click", async () => {
+                try {
+                    const likeRes = await fetch(`http://localhost:3000/visualisations/${encodeURIComponent(dreamId)}/like`, {
+                        method: "POST",
+                        credentials: "include",
+                    });
+                    const likeData = await likeRes.json();
+                    if (!likeRes.ok) {
+                        showAlert(likeData?.error || "Ошибка лайка");
+                        return;
+                    }
+                    if (likesEl) likesEl.textContent = String(likeData?.likes ?? 0);
+                    const nowLiked = Boolean(likeData?.liked);
+                    if (heartEl) {
+                        heartEl.textContent = nowLiked ? "♥" : "♡";
+                        heartEl.classList.toggle("dream-heart--red", nowLiked);
+                    }
+                } catch {
+                    showAlert("Ошибка соединения");
+                }
+            });
+        } catch {
+            showAlert("Ошибка соединения");
+        }
+    })();
+}
+
+// ----------------------- СЛУЖЕБНЫЕ СТРАНИЦЫ -----------------------
+function renderDisclaimerPage() {
+    if (!app) return;
+    app.innerHTML = `
+        <div class="disclaimer-page fade-in">
+            <div class="disclaimer-container">
+                <h1>DISCLAIMER</h1>
+                <p>
+                    This website is created for humorous purposes and does not involve the actual purchase of items.
+                    Please only rate the creation of the website, as it is designed to teach novice programmers.
+                </p>
+                <button class="disclaimer-btn">Continue →</button>
+            </div>
+        </div>
+    `;
+    document.querySelector(".disclaimer-btn")?.addEventListener("click", () => navigate("/home"));
+}
+
+// ----------------------- РОУТЕР -----------------------
+function router() {
+    // Отрезаем BASE_PATH, чтобы роутер видел чистый путь
+    const path = stripBase(window.location.pathname);
+    console.log("ROUTER STARTED", path);
+
+    if (path !== "/") {
+        loader?.style.setProperty("display", "none");
+        btn?.style.setProperty("display", "none");
+    }
+
+    if (path === "/") {
+        loader?.classList.remove("hidden");
+        setTimeout(() => {
+            loader!.style.opacity = "0";
+            setTimeout(() => {
+                loader!.style.display = "none";
+                btn?.classList.remove("hidden");
+            }, 500);
+        }, 1500);
+
+        btn?.addEventListener("click", () => navigate("/login"));
+        return;
+    }
+
+    if (path === "/login") return renderLoginPage();
+    if (path === "/code") return renderCodePage();
+    if (path === "/home") return renderDreamCreatePage();
+    if (path === "/history") return renderDreamListPage("history");
+    if (path === "/favorites") return renderDreamListPage("favorites");
+    if (path === "/disclaimer") return renderDisclaimerPage();
+
+    if (path.startsWith("/dream/") || path === "/dream") {
+        const parts = path.split("/");
+        const id = parts.length >= 3 && parts[2] ? parts[2] : "1";
+        if (parts[2] === "foreign" && parts[3]) {
+            return renderDreamForeignDetailPage(parts[3]);
+        }
+        return renderDreamDetailPage(id);
+    }
+    if (path.startsWith("/catalog")) return renderDreamListPage("dreams");
+
+    if (app) app.innerHTML = "<h1>404 — Страница не найдена</h1>";
+}
+
+// ----------------------- ЗАПУСК -----------------------
+window.addEventListener("popstate", () => {
+    runRouteTransition(router);
+});
+if (document.readyState === "complete") {
+    router();
+} else {
+    window.addEventListener("load", router);
+}
