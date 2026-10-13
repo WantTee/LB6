@@ -1,0 +1,109 @@
+/* ============================================================
+   DESKTOP TOP-NAV (>=768px)
+   Показывает инлайн-кнопки вместо бургера.
+   Mobile (<=767px) полностью управляется dark-mobile.css.
+   ============================================================ */
+
+/* По умолчанию (мобильный) инлайн-навигация скрыта.
+   dark-mobile.css уже задаёт .dream-nav-right { display: none },
+   но продублируем — для случая, если подключат только этот файл. */
+.dream-nav-right { display: none; }
+.dream-nav-link  { display: none; }
+
+@media (min-width: 768px) {
+
+  /* Бургер скрываем */
+  .dream-nav-left { display: none !important; }
+
+  /* Инлайн-навигация справа */
+  .dream-nav-right {
+    display: flex !important;
+    align-items: center;
+    gap: 1.75rem;
+    margin-left: auto;
+    margin-right: 0.25rem;
+  }
+
+  .dream-nav-link {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    padding: 0.35rem 0;
+    position: relative;
+    transition: color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .dream-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: #a73cff;
+    transition: width 0.25s ease;
+  }
+
+  .dream-nav-link:hover {
+    transform: translateY(-1px);
+  }
+  .dream-nav-link:hover::after {
+    width: 100%;
+  }
+
+  .dream-nav-link.active {
+    color: #a73cff;
+  }
+  .dream-nav-link.active::after {
+    width: 100%;
+    background: #a73cff;
+  }
+
+  .dream-nav-link--exit {
+    color: #ff6b6b;
+  }
+  .dream-nav-link--exit::after {
+    background: #ff6b6b;
+  }
+
+  /* Лого по центру — уже absolute в dark-mobile.css,
+     но на десктопе dark-mobile не применяется.
+     Задаём центрирование заново. */
+  .dream-top-nav {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: rgba(20, 20, 20, 0.98);
+    border-bottom: 1px solid #262626;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    color: #ffffff;
+  }
+
+  .dream-nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dream-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(232, 155, 60, 0.35));
+  }
+}

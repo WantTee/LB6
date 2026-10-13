@@ -1,0 +1,169 @@
+[
+  {
+    "id": "1772776808912",
+    "userId": "1772776808912",
+    "basket": [
+      {
+        "id": 1775464734268,
+        "count": 1,
+        "product": {
+          "id": 2,
+          "title": "Barack Obama Merch T-Shirt",
+          "price": 49,
+          "isAvailable": true,
+          "description": "Stylish t-shirt with Barack Obama print.",
+          "categories": [
+            "president",
+            "merch"
+          ],
+          "images": {
+            "preview": "/products/obama.jpg",
+            "gallery": [
+              "/products/obama.jpg"
+            ]
+          }
+        }
+      },
+      {
+        "id": 1775464755731,
+        "count": 1,
+        "product": {
+          "id": 5,
+          "title": "Barack Obama Merch T-Shirt",
+          "price": 49,
+          "isAvailable": true,
+          "description": "Stylish t-shirt with Barack Obama print.",
+          "categories": [
+            "president",
+            "merch"
+          ],
+          "images": {
+            "preview": "/products/obama.jpg",
+            "gallery": [
+              "/products/obama.jpg"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "1773393435188",
+    "userId": "1773393435188",
+    "basket": [
+      {
+        "id": 1773393442407,
+        "count": 14,
+        "product": {
+          "id": 2,
+          "title": "Barack Obama Merch T-Shirt",
+          "price": 49,
+          "isAvailable": true,
+          "description": "Stylish t-shirt with Barack Obama print.",
+          "categories": [
+            "president",
+            "merch"
+          ],
+          "images": {
+            "preview": "/products/obama.jpg",
+            "gallery": [
+              "/products/obama.jpg"
+            ]
+          }
+        }
+      },
+      {
+        "id": 1773393653031,
+        "count": 6,
+        "product": {
+          "id": 1,
+          "title": "Emmanuel Macron Dakimakura",
+          "price": 199,
+          "isAvailable": true,
+          "description": "Premium dakimakura with Emmanuel Macron print.",
+          "categories": [
+            "president",
+            "dakimakura"
+          ],
+          "images": {
+            "preview": "/products/beautifyl.jpg",
+            "gallery": [
+              "/products/beautifyl.jpg"
+            ]
+          },
+          "discount": 0
+        }
+      },
+      {
+        "id": 1773418722910,
+        "count": 2,
+        "product": {
+          "id": 3,
+          "title": "Donald Trump Poster",
+          "price": 29,
+          "isAvailable": true,
+          "description": "High quality Donald Trump wall poster.",
+          "categories": [
+            "president",
+            "merch"
+          ],
+          "images": {
+            "preview": "/products/trump.jpg",
+            "gallery": [
+              "/products/trump.jpg"
+            ]
+          }
+        }
+      },
+      {
+        "id": 1773428046062,
+        "count": 5,
+        "product": {
+          "id": 4,
+          "title": "Emmanuel Macron Dakimakura",
+          "price": 199,
+          "isAvailable": true,
+          "description": "Premium dakimakura with Emmanuel Macron print.",
+          "categories": [
+            "president",
+            "dakimakura"
+          ],
+          "images": {
+            "preview": "/products/beautifyl.jpg",
+            "gallery": [
+              "/products/beautifyl.jpg"
+            ]
+          },
+          "discount": 0
+        }
+      },
+      {
+        "id": 1773428089931,
+        "count": 1,
+        "product": {
+          "id": 13,
+          "title": "Emmanuel Macron Dakimakura",
+          "price": 199,
+          "isAvailable": true,
+          "description": "Premium dakimakura with Emmanuel Macron print.",
+          "categories": [
+            "president",
+            "dakimakura"
+          ],
+          "images": {
+            "preview": "/products/beautifyl.jpg",
+            "gallery": [
+              "/products/beautifyl.jpg"
+            ]
+          },
+          "discount": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "1773435153502",
+    "userId": "1773435153502",
+    "basket": []
+  }
+]

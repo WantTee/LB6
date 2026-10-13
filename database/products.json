@@ -1,0 +1,187 @@
+[
+  {
+    "id": 1,
+    "title": "Emmanuel Macron Dakimakura",
+    "price": 199,
+    "isAvailable": true,
+    "description": "Premium dakimakura with Emmanuel Macron print.",
+    "categories": ["president", "dakimakura"],
+    "images": {
+      "preview": "/products/beautifyl.jpg",
+      "gallery": ["/products/beautifyl.jpg"]
+    },
+    "discount": 0
+  },
+  {
+    "id": 2,
+    "title": "Barack Obama Merch T-Shirt",
+    "price": 49,
+    "isAvailable": true,
+    "description": "Stylish t-shirt with Barack Obama print.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/obama.jpg",
+      "gallery": ["/products/obama.jpg"]
+    }
+  },
+  {
+    "id": 3,
+    "title": "Donald Trump Poster",
+    "price": 29,
+    "isAvailable": true,
+    "description": "High quality Donald Trump wall poster.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/trump.jpg",
+      "gallery": ["/products/trump.jpg"]
+    }
+  },
+  {
+    "id": 4,
+    "title": "Emmanuel Macron Dakimakura",
+    "price": 199,
+    "isAvailable": true,
+    "description": "Premium dakimakura with Emmanuel Macron print.",
+    "categories": ["president", "dakimakura"],
+    "images": {
+      "preview": "/products/beautifyl.jpg",
+      "gallery": ["/products/beautifyl.jpg"]
+    },
+    "discount": 0
+  },
+  {
+    "id": 5,
+    "title": "Barack Obama Merch T-Shirt",
+    "price": 49,
+    "isAvailable": true,
+    "description": "Stylish t-shirt with Barack Obama print.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/obama.jpg",
+      "gallery": ["/products/obama.jpg"]
+    }
+  },
+  {
+    "id": 6,
+    "title": "Donald Trump Poster",
+    "price": 29,
+    "isAvailable": true,
+    "description": "High quality Donald Trump wall poster.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/trump.jpg",
+      "gallery": ["/products/trump.jpg"]
+    }
+  },
+  {
+    "id": 7,
+    "title": "Emmanuel Macron Dakimakura",
+    "price": 199,
+    "isAvailable": true,
+    "description": "Premium dakimakura with Emmanuel Macron print.",
+    "categories": ["president", "dakimakura"],
+    "images": {
+      "preview": "/products/beautifyl.jpg",
+      "gallery": ["/products/beautifyl.jpg"]
+    },
+    "discount": 0
+  },
+  {
+    "id": 8,
+    "title": "Barack Obama Merch T-Shirt",
+    "price": 49,
+    "isAvailable": true,
+    "description": "Stylish t-shirt with Barack Obama print.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/obama.jpg",
+      "gallery": ["/products/obama.jpg"]
+    }
+  },
+  {
+    "id": 9,
+    "title": "Donald Trump Poster",
+    "price": 29,
+    "isAvailable": true,
+    "description": "High quality Donald Trump wall poster.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/trump.jpg",
+      "gallery": ["/products/trump.jpg"]
+    }
+  },
+  {
+    "id": 10,
+    "title": "Emmanuel Macron Dakimakura",
+    "price": 199,
+    "isAvailable": true,
+    "description": "Premium dakimakura with Emmanuel Macron print.",
+    "categories": ["president", "dakimakura"],
+    "images": {
+      "preview": "/products/beautifyl.jpg",
+      "gallery": ["/products/beautifyl.jpg"]
+    },
+    "discount": 0
+  },
+  {
+    "id": 11,
+    "title": "Barack Obama Merch T-Shirt",
+    "price": 49,
+    "isAvailable": true,
+    "description": "Stylish t-shirt with Barack Obama print.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/obama.jpg",
+      "gallery": ["/products/obama.jpg"]
+    }
+  },
+  {
+    "id": 12,
+    "title": "Donald Trump Poster",
+    "price": 29,
+    "isAvailable": true,
+    "description": "High quality Donald Trump wall poster.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/trump.jpg",
+      "gallery": ["/products/trump.jpg"]
+    }
+  },
+  {
+    "id": 13,
+    "title": "Emmanuel Macron Dakimakura",
+    "price": 199,
+    "isAvailable": true,
+    "description": "Premium dakimakura with Emmanuel Macron print.",
+    "categories": ["president", "dakimakura"],
+    "images": {
+      "preview": "/products/beautifyl.jpg",
+      "gallery": ["/products/beautifyl.jpg"]
+    },
+    "discount": 0
+  },
+  {
+    "id": 14,
+    "title": "Barack Obama Merch T-Shirt",
+    "price": 49,
+    "isAvailable": true,
+    "description": "Stylish t-shirt with Barack Obama print.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/obama.jpg",
+      "gallery": ["/products/obama.jpg"]
+    }
+  },
+  {
+    "id": 15,
+    "title": "Donald Trump Poster",
+    "price": 29,
+    "isAvailable": true,
+    "description": "High quality Donald Trump wall poster.",
+    "categories": ["president", "merch"],
+    "images": {
+      "preview": "/products/trump.jpg",
+      "gallery": ["/products/trump.jpg"]
+    }
+  }
+]
