@@ -1,26 +1,13 @@
-// ----------------------- IMPORTS -----------------------
 import { renderBurgerPanel, attachBurgerHandlers } from "./components/burger-menu";
 import type { DreamListMode } from "./components/burger-menu";
 
-// ----------------------- BASE PATH (GitHub Pages) -----------------------
-/**
- * Префикс, под которым сайт живёт на GitHub Pages.
- * Должен совпадать с именем репозитория (vite.config.js → base).
- *
- * На локальном dev-сервере (http://localhost:5173/) этого префикса нет,
- * поэтому router() и assetUrl() умеют с ним работать в обоих случаях.
- *
- * ⚠️ Если переименуете репозиторий — поменяйте здесь и в vite.config.js.
- */
 const BASE_PATH = "/LB6";
 
-/** Возвращает путь с учётом BASE_PATH для навигации. */
 function withBase(path: string): string {
     if (!BASE_PATH) return path;
     return BASE_PATH + path;
 }
 
-/** Убирает BASE_PATH из window.location.pathname, чтобы роутер видел чистый путь. */
 function stripBase(pathname: string): string {
     if (!BASE_PATH) return pathname;
     if (pathname === BASE_PATH) return "/";
@@ -30,7 +17,6 @@ function stripBase(pathname: string): string {
     return pathname;
 }
 
-/** Строит корректный URL для статического ассета (/logo.png → /LB6/logo.png). */
 function assetUrl(path: string): string {
     return withBase(path);
 }
